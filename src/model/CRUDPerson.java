@@ -2,10 +2,10 @@ package model;
 
 public interface CRUDPerson {
 
-	 Object addPerson();
+	 void addPerson();
 	 
-	 Object erasePerson();
+	 void erasePerson();
 	 
-	 Object updatePerson();
+	 void updatePerson();
 	 
 }
