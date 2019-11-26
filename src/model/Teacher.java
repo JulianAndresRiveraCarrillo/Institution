@@ -72,8 +72,7 @@ public class Teacher implements CRUD{
 	
 	
 	//erases a Subject
-	@Override
-	public void erase(int id) {
+	public void eraseSubject(int id) {
 		for(int i = 0; i<teacherSubjects.size();i++) {
 			if(teacherSubjects.get(i).getId()==id) {
 				teacherSubjects.remove(i);
