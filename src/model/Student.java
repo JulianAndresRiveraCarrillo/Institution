@@ -1,6 +1,8 @@
 package model;
 
-public class Student {
+import exception.NotFoundException;
+
+public class Student implements SubjectInterface{
 	
 	//atributos 
 	private String firstName;
@@ -91,6 +93,56 @@ public class Student {
 		this.studentSubjects = studentSubjects;
 	}
 	
+	//searches a Subject
+		public Object searchSubject(int id) {
+			Subject aux = null;
+			if(studentSubjects!=null) {
+				aux = studentSubjects;
+				boolean end = false;
+				
+				while(aux.getNextSubject()!=null && end==false) {
+					if(aux.getId()==id) {
+						end = true;
+					}
+					else {
+						aux = aux.getNextSubject();
+					}
+				}
+			}
+			return aux;
+		}
 	
-	
+		public Subject searchPrevSubject(int id) {
+			Subject prev = null;
+			Subject actual = studentSubjects;
+			
+			while(actual!=null && actual.getId()!=id) {
+				prev = actual;
+				actual = actual.getNextSubject();
+			}
+			return actual !=null?prev:null;
+		}
+		
+		
+		//erases a Subject
+		public void eraseSubject(int id) {
+			Subject aux = studentSubjects;
+			try {
+				if(aux == null || (aux.getId()!=id&&aux.getNextSubject()==null))
+					throw new NotFoundException();
+				else if(studentSubjects.getId()==id)
+					studentSubjects = studentSubjects.getNextSubject();
+				else {
+					Subject prev = searchPrevSubject(id);
+					if(prev==null)
+						throw new NotFoundException();
+					prev.setNextSubject(prev.getNextSubject().getNextSubject());
+				}
+			}
+			catch(NotFoundException o) {
+				System.out.println(o.getMessage());
+			}
+		}
+		
+		
 }
