@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <HBox alignment="CENTER" prefHeight="127.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" text="DIRECTOR">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="54.0" fitWidth="76.0" layoutX="100.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" text="PROFESOR">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="54.0" fitWidth="76.0" layoutX="267.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" text="ESTUDIANTE">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Button>
+         </children>
+      </HBox>
+   </center>
+   <left>
+      <Pane prefHeight="256.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="256.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="BIENVENIDO">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
