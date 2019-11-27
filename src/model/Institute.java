@@ -15,6 +15,9 @@ public class Institute implements SubjectInterface{
 	//relaciones
 	private Teacher teachersInThisInstitute;
 	
+	//relaciones
+	private StudentChairPerson chaipersonsInThisInstitute;
+	
 	//metodo constructor 
 	public Institute(String name) {
 		super();
@@ -301,5 +304,20 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 
 	public double getAverageSemester(int student) {
 		return searchStudentById(student).semesterAverage();
+	}
+
+	public StudentChairPerson getChaipersonsInThisInstitute() {
+		return chaipersonsInThisInstitute;
+	}
+	
+	public void addChairPerson(StudentChairPerson cp) {
+		StudentChairPerson aux = chaipersonsInThisInstitute;
+		if(aux == null)
+			chaipersonsInThisInstitute = cp;
+		else {
+			while(aux.getNextChairPerson()!=null)
+				aux = aux.getNextChairPerson();
+		}
+		aux.setNextChairPerson(cp);
 	}
 }

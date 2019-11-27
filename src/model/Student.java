@@ -96,12 +96,15 @@ public class Student implements SubjectInterface{
 	public double semesterAverage() {
 		int c = 0;
 		int grades = 0;
+		int a = 0;
+		if(studentSubjects!=null) {
 		Subject aux = studentSubjects;
 		while(aux !=null) {
 			grades += aux.average();
 			c++;
 			aux = aux.getNextSubject();
+		}a = grades/c;
 		}
-		return grades/c;
+		return a;
 	}
 }
