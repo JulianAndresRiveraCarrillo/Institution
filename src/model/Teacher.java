@@ -73,11 +73,6 @@ public class Teacher implements SubjectInterface,CRUD{
 		this.right = right;
 	}
 	
-	
-	//erases a Subject
-	public void eraseSubject(int id) {
-		
-	}
 
 	@Override
 	public Object search(int id) {
@@ -130,4 +125,6 @@ public class Teacher implements SubjectInterface,CRUD{
 	public void erase(int id) {
 		
 	}
+	
+	
 }

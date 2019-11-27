@@ -1,8 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+
 public abstract class Subject {
 	
-	private double grade;
+	private ArrayList<Double> grades;
 	private String name;
 	private int id;
 
@@ -12,6 +14,7 @@ public abstract class Subject {
 	//metodo constructor
 	public Subject(Subject nextSubject) {
 		nextSubject = null;
+		grades = new ArrayList<Double>();
 	}
 
 	//metodos getters y setters
@@ -23,12 +26,8 @@ public abstract class Subject {
 		this.nextSubject = nextSubject;
 	}
 
-	public double getGrade() {
-		return grade;
-	}
-
-	public void setGrade(double grade) {
-		this.grade = grade;
+	public ArrayList<Double> getGrade() {
+		return grades;
 	}
 
 	public String getName() {
@@ -47,5 +46,14 @@ public abstract class Subject {
 		this.id = id;
 	}
 	
-	
+	public double average() {
+		int counter = 0;
+		int g = 0;
+		for(int i = 0; i<grades.size();i++) {
+			g+=grades.get(i);
+			counter++;
+		}
+		double av = g/counter;
+		return av;
+	}
 }

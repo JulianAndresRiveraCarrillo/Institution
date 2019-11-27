@@ -59,7 +59,7 @@ public class Institute implements SubjectInterface{
 	
 	public void addTeacherSubject(int id, Subject s) {
 		
-		SubjectInterface.addSubjectEnd(searchTeacher(id).getTeacherSubjects(), s);
+		SubjectInterface.addSubjectStart(searchTeacher(id).getTeacherSubjects(), s);
 	}
 	
 	public void addTeacher(Teacher t) {
@@ -209,9 +209,9 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 			return b;
 		}
 	
-	public void addGrade(int id,int s, int grade) {
+	public void addGrade(int id,int s, double grade) {
 		if(teachersInThisInstitute!=null)
-		SubjectInterface.searchSubject(searchTeacher(id).getTeacherSubjects(),id).setGrade(grade);
+		SubjectInterface.searchSubject(searchTeacher(id).getTeacherSubjects(),id).getGrade().add(grade);
 	}
 	
 	public Teacher getTeacherChange(Teacher toChange) {
@@ -293,5 +293,13 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 				}
 			}
 		}
+	}
+
+	public double getAverageSubject(int student, int subject) {
+		return SubjectInterface.searchSubject(searchStudentById(student).getStudentSubjects(),subject).average();
+	}
+
+	public double getAverageSemester(int student) {
+		return searchStudentById(student).semesterAverage();
 	}
 }
