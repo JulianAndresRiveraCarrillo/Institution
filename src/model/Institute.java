@@ -112,23 +112,186 @@ public class Institute implements SubjectInterface{
 		while(start<=fin && found==false) {
 			int middle = (start+fin)/2;
 			
-			if(sortClubByID().get(middle).getId()==id) {
-				b = sortClubByID().get(middle);
+			if(sortStudentsByIDB().get(middle).getId()==id) {
+				b = sortStudentsByIDB().get(middle);
 				found = true;
 			}
-			else if(sortClubByID().get(middle).getId()>id) {
+			else if(sortStudentsByIDB().get(middle).getId()>id) {
 				fin = middle-1;
 				
 			}
-			else if(sortClubByID().get(middle).getId()<id) {
+			else if(sortStudentsByIDB().get(middle).getId()<id) {
 				start = middle+1;
 			}
 		}
 		return b;
 	}
 	
+	public ArrayList<Student> sortClubByLastNameI(){//by insertion
+		
+		for(int i = 1;i<studentsInThisInstitute.size();i++) {
+			for(int j = i;j>0 && studentsInThisInstitute.get(j-1).getLastName().compareTo(studentsInThisInstitute.get(j).getLastName())<0;j--) {
+				Student temp = studentsInThisInstitute.get(j);
+				studentsInThisInstitute.set(j, studentsInThisInstitute.get(j-1));
+				studentsInThisInstitute.set(j-1, temp);
+			}
+		}
+	return studentsInThisInstitute;
+	}
+	
+public ArrayList<Student> sortClubByLastNameS(){//using selection
+		
+		for(int i =0;i<studentsInThisInstitute.size();i++) {
+			Student minor = studentsInThisInstitute.get(i);
+			int which = i;
+			for(int j=i+1;j<studentsInThisInstitute.size();j++) {
+				if(studentsInThisInstitute.get(j).getLastName().compareTo(minor.getLastName())<0) {
+					minor = studentsInThisInstitute.get(j);
+					 which = j;
+				}
+			}
+			Student temp = studentsInThisInstitute.get(i);
+			studentsInThisInstitute.set(i, minor);
+			studentsInThisInstitute.set(which, temp); 
+		}
+		return studentsInThisInstitute;
+	}
+	
+public ArrayList<Student> sortStudentsByFirstNameI(){//by insertion
+		
+		for(int i = 1;i<studentsInThisInstitute.size();i++) {
+			for(int j = i;j>0 && studentsInThisInstitute.get(j-1).getFirstName().compareTo(studentsInThisInstitute.get(j).getFirstName())<0;j--) {
+				Student temp = studentsInThisInstitute.get(j);
+				studentsInThisInstitute.set(j, studentsInThisInstitute.get(j-1));
+				studentsInThisInstitute.set(j-1, temp);
+			}
+		}
+	return studentsInThisInstitute;
+	}
+
+public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
+	
+	for(int i=studentsInThisInstitute.size();i>0;i--) {
+		for(int j = 0;j<i-1;j++) {
+			if(studentsInThisInstitute.get(j).getFirstName().compareTo(studentsInThisInstitute.get(j+1).getFirstName())>0){
+				Student temp = studentsInThisInstitute.get(j);
+				studentsInThisInstitute.set(j, studentsInThisInstitute.get(j+1));
+				studentsInThisInstitute.set(j+1, temp);
+			}
+		}
+	}
+	return studentsInThisInstitute;
+}
+	
+	//searches a student in a binary way
+		public Student searchStudentByFirstName(String n) {
+			Student b = null;
+			
+			boolean found = false;
+			int start = 0;
+			int fin = studentsInThisInstitute.size()-1;
+			
+			while(start<=fin && found==false) {
+				int middle = (start+fin)/2;
+				
+				if(sortStudentsByFirstNameI().get(middle).getFirstName().equals(n)) {
+					b = sortStudentsByFirstNameI().get(middle);
+					found = true;
+				}
+				else if(sortStudentsByFirstNameI().get(middle).getFirstName().compareTo(n)<0) {
+					fin = middle-1;
+					
+				}
+				else if(sortStudentsByFirstNameI().get(middle).getFirstName().compareTo(n)>0) {
+					start = middle+1;
+				}
+			}
+			return b;
+		}
+	
 	public void addGrade(int id,int s, int grade) {
 		if(teachersInThisInstitute!=null)
 		SubjectInterface.searchSubject(searchTeacher(id).getTeacherSubjects(),id).setGrade(grade);
+	}
+	
+	public Teacher getTeacherChange(Teacher toChange) {
+		Teacher changeFather = toChange;
+		Teacher change = toChange;
+		Teacher aux = toChange.getRight();
+		while(aux!=null) {
+			changeFather = change;
+			change = aux;
+			aux = aux.getLeft();
+		}
+		if(change!=toChange.getRight()) {
+			changeFather.setLeft(change.getRight());
+			change.setRight(toChange.getRight());
+		}
+		return change;
+	}
+	
+	public void eraseTeacher(int id) {
+		if(teachersInThisInstitute!=null) {
+			if(searchTeacher(id)!=null) {
+				Teacher aux = teachersInThisInstitute;
+				Teacher father = teachersInThisInstitute;
+				boolean isLeftSon = true;
+				while(aux.getId()!=id) {
+					father = aux;
+					if(aux.getId()>id) {
+						isLeftSon = true;
+						aux = aux.getLeft();
+					}
+					else {
+						isLeftSon=false;
+						aux = aux.getRight();
+					}
+				}
+				
+				if(aux.getRight()==null && aux.getLeft()==null) {//if aux is root or leaf
+					if(aux == teachersInThisInstitute) {
+						teachersInThisInstitute = null;
+					}
+					else if(isLeftSon==true){
+						father.setLeft(null);
+					}
+					else
+						father.setRight(null);
+				}
+				
+				else if(aux.getRight()!=null && aux.getLeft()==null) {
+					if(aux == teachersInThisInstitute) {
+						teachersInThisInstitute = aux.getRight();
+					}
+					else if(isLeftSon==true){
+						father.setLeft(aux.getRight());
+					}
+					else
+						father.setRight(aux.getRight());
+				}
+				
+				else if(aux.getLeft()!=null && aux.getRight()==null) {
+					if(aux == teachersInThisInstitute) {
+						teachersInThisInstitute = aux.getLeft();
+					}
+					else if(isLeftSon==true){
+						father.setLeft(aux.getLeft());
+					}
+					else
+						father.setRight(aux.getLeft());
+				}
+				else {//when aux has both sons
+					Teacher change = getTeacherChange(aux);
+					if(aux == teachersInThisInstitute)
+						teachersInThisInstitute = change;
+					else if(isLeftSon==true){
+						father.setLeft(change);
+					}
+					else
+						father.setRight(change);
+					change.setLeft(aux.getLeft());
+				}
+			}
+		}
 	}
 }
