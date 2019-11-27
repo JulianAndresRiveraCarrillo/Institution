@@ -127,7 +127,7 @@ public class Teacher implements SubjectInterface,CRUD{
 	//Nota: falta este metodo que borra un profesor
 	//
 	@Override
-	//public void erase(int id) {
+	public void erase(int id) {
 		
 	}
 }
