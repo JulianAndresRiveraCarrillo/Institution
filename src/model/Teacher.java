@@ -1,8 +1,9 @@
 package model;
 
-import java.util.ArrayList;
 
-public class Teacher implements CRUD{
+import exception.NotFoundException;
+
+public class Teacher implements SubjectInterface,CRUD{
 	
 	//atributos
 	private String firstName;
@@ -10,7 +11,7 @@ public class Teacher implements CRUD{
 	private int id;
 	
 	//relaciones
-	private ArrayList<Subject> teacherSubjects;
+	private Subject teacherSubjects;
 	private Teacher left;
 	private Teacher right;
 	
@@ -21,7 +22,6 @@ public class Teacher implements CRUD{
 		this.id = id;
 		left = null;
 		right = null;
-		teacherSubjects = new ArrayList<Subject>();
 	}
 
 	//metodos getters y setters
@@ -49,10 +49,13 @@ public class Teacher implements CRUD{
 		this.id = id;
 	}
 
-	public ArrayList<Subject> getTeacherSubjects() {
+	public Subject getTeacherSubjects() {
 		return teacherSubjects;
 	}
 
+	public void setTeacherSubjects(Subject teacherSubjects) {
+		this.teacherSubjects = teacherSubjects;
+	}
 
 	public Teacher getLeft() {
 		return left;
@@ -73,44 +76,31 @@ public class Teacher implements CRUD{
 	
 	//erases a Subject
 	public void eraseSubject(int id) {
-		for(int i = 0; i<teacherSubjects.size();i++) {
-			if(teacherSubjects.get(i).getId()==id) {
-				teacherSubjects.remove(i);
-			}
-		}
+		
 	}
 
-	//searches a Subject
-	public Object searchSubject(int id) {
-		Subject s = null;
-		for(int i = 0; i<teacherSubjects.size();i++) {
-			if(teacherSubjects.get(i).getId()==id) {
-				s = teacherSubjects.get(i);
-			}
-		}
-		return s;
-	}
-	
-	//searches a Teacher in a recursive way
 	@Override
 	public Object search(int id) {
-		Object x = null;
-		if(id==this.id) {
-			x = ((Object)this);
+		Teacher o = null;
+		try{if(id==this.id) 
+			o = this;
+		if(id>this.id && right==null) {
+			throw new NotFoundException();
 		}
-		else if(id>this.id) {
-			return right.search(id);
+		if(id<this.id && left==null) {
+			throw new NotFoundException();
 		}
-		else if(id<this.id) {
-			return left.search(id);
+		if(id>this.id && right!=null) {
+			right.search(id);
 		}
-		return x;
-	}
-
-	//adds a Subject
-	public void addSubject(Subject g) {
-		teacherSubjects.add(g);
-	}
+		if(id<this.id && left!=null) {
+			left.search(id);
+		}
+		}catch(NotFoundException n) {
+			System.out.println(n.getMessage());
+		}
+		return o;
+	}	
 	
 	//adds a teacher in a recursive way
 	@Override
@@ -130,4 +120,14 @@ public class Teacher implements CRUD{
 		}
 	}
 	
+
+	
+	//
+	//
+	//Nota: falta este metodo que borra un profesor
+	//
+	@Override
+	//public void erase(int id) {
+		
+	}
 }

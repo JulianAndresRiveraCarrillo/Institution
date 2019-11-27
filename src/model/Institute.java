@@ -2,9 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-import exception.PersonNotFoundException;
+import exception.NotFoundException;
 
-public class Institute {
+public class Institute implements SubjectInterface{
 	
 	//atributos
 	private String name;
@@ -49,16 +49,17 @@ public class Institute {
 			t = ((Teacher)teachersInThisInstitute.search(id));
 		}
 		else if(teachersInThisInstitute.search(id)==null) {
-			throw new PersonNotFoundException();
+			throw new NotFoundException();
 		}
-		}catch(PersonNotFoundException p) {
+		}catch(NotFoundException p) {
 			System.out.println(p.getMessage());
 		}
 		return t;
 	}
 	
 	public void addTeacherSubject(int id, Subject s) {
-		searchTeacher(id).addSubject(s);
+		
+		SubjectInterface.addSubjectEnd(searchTeacher(id).getTeacherSubjects(), s);
 	}
 	
 	public void addTeacher(Teacher t) {
@@ -66,5 +67,14 @@ public class Institute {
 			teachersInThisInstitute = t;
 		else
 			teachersInThisInstitute.add(((Object)t));
+	}
+	
+	//searches a student in a binary way
+	public Student searchStudentById(int id) {
+		
+	}
+	
+	public void addGrade(int id,int s, int grade) {
+		searchStudentById(id).getStudentSubjects().searchSubject(s).setGrade(grade);
 	}
 }
