@@ -9,14 +9,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Institute;
+import model.Student;
+import thread.ClockThread;
 
 public class Login implements Initializable{
+private ClockThread c;
+	
+	@FXML
+	private Label time;
 
 	private Scene scene;
 	
 	private char type;
+	
+	private Institute inst;
+	
+	@FXML
+	private TextField tf;
 	
 	public void setScene(Scene scene) {
 		this.scene = scene;
@@ -24,6 +38,12 @@ public class Login implements Initializable{
 	
 	public void getType(char type) {
 		this.type=type;
+	}
+	
+	@FXML
+	public void doThread() {
+		c.start();
+		time.setText(c.getD());
 	}
 
 	@FXML
@@ -38,7 +58,7 @@ public class Login implements Initializable{
 			s.setScene(sc);
 			if(type=='D') {
 				Director d = f.getController();
-				d.setScene(sc);
+				d.setScene(sc); 
 			}
 			else if(type=='P') {
 				Profesor p = f.getController();
@@ -47,6 +67,8 @@ public class Login implements Initializable{
 			if(type=='S') {
 				Estudiante e = f.getController();
 				e.setScene(sc);
+				Student st = inst.searchStudentById(Integer.parseInt(tf.getText()));
+				e.setStudent(st);
 			}
 			s.show();
 		} catch (IOException e) {

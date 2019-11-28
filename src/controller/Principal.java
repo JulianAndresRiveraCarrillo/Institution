@@ -10,9 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import thread.ClockThread;
 
 public class Principal implements Initializable{
 	
@@ -28,6 +30,10 @@ public class Principal implements Initializable{
 	private Scene scene;
 	
 	private Login l;
+	
+	private ClockThread c;
+	@FXML
+	private Label time;
 	
 	public void setScene(Scene scene) {
 		this.scene = scene;
@@ -92,10 +98,17 @@ public class Principal implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void doThread() {
+		c.start();
+		time.setText(c.getD());
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		time = new Label();
+		
 		
 	}
 

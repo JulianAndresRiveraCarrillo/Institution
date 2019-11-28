@@ -10,8 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import thread.ClockThread;
 
 public class Director implements Initializable{
+	
+private ClockThread c;
+	
+	@FXML
+	private Label time;
 	
 	@FXML
 	Label label1;
@@ -53,6 +59,11 @@ public class Director implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	@FXML
+	public void doThread() {
+		c.start();
+		time.setText(c.getD());
 	}
 	
 	void Teacher(MouseEvent evet) {

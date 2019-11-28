@@ -112,4 +112,8 @@ public class Student implements SubjectInterface,Serializable{
 		}
 		return a;
 	}
+	
+	public Subject searchSubject(int code) {
+		return SubjectInterface.searchSubject(studentSubjects, code);
+	}
 }
