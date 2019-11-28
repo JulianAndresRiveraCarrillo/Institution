@@ -10,14 +10,14 @@ public class Student implements SubjectInterface{
 	private int id;
 	private int age;
 	private int stratum;
-	private int phone;
-	private int address;
+	private String phone;
+	private String address;
 	
 	//relaciones 
 	private Subject studentSubjects;
 	
 	//metodo constructor
-	public Student(String firstName, String lastName, int id, int age, int stratum, int phone, int address) {
+	public Student(String firstName, String lastName, int id, int age, int stratum, String phone, String address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -69,19 +69,19 @@ public class Student implements SubjectInterface{
 		this.stratum = stratum;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public int getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(int address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

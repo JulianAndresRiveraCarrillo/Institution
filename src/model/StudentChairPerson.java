@@ -6,7 +6,7 @@ public class StudentChairPerson extends Student{
 	private StudentChairPerson nextChairPerson;
 	
 	//metodo constructor
-	public StudentChairPerson(String firstName, String lastName, int id, int age, int stratum, int phone, int address) {
+	public StudentChairPerson(String firstName, String lastName, int id, int age, int stratum, String phone, String address) {
 		super(firstName, lastName, id, age, stratum, phone, address);
 		nextChairPerson = null;
 	}
