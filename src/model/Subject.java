@@ -12,8 +12,10 @@ public abstract class Subject {
 	private Subject nextSubject;
 
 	//metodo constructor
-	public Subject(Subject nextSubject) {
-		nextSubject = null;
+	public Subject(String n, int id,Subject nextSubject) {
+		name = n;
+		this.id = id;
+		this.nextSubject = nextSubject;
 		grades = new ArrayList<Double>();
 	}
 
