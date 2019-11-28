@@ -2,8 +2,8 @@ package model;
 
 public class SocialScience extends Subject {
 
-	public SocialScience(Subject nextSubject) {
-		super(nextSubject);
+	public SocialScience(String name, int id, Subject nextSubject) {
+		super(name, id, nextSubject);
 	}
 
 }
