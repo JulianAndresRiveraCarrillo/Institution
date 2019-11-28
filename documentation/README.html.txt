@@ -16,3 +16,6 @@ For the instalation of the program, if you're using a .zip file, you should:
 	2. Open your IDE in the workspace in which you have the file
 	3. Import the project
 	4. Run the project
+
+
+<<<The project URL of the project in Github is https://github.com/JulianAndresRiveraCarrillo/Institution>>>
