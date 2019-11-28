@@ -1,12 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 public class ClassRoom {
 	
 	//atributos
 	private int location;
 	
 	//relaciones
-	private Student studentsInThisClassroom;
+	private ArrayList<Student> studentsInThisClass;
 
 	//metodo constructor
 	public ClassRoom(int location) {
@@ -23,13 +25,11 @@ public class ClassRoom {
 		this.location = location;
 	}
 
-	public Student getStudentsInThisClassroom() {
-		return studentsInThisClassroom;
+	public ArrayList<Student> getStudentsInThisClass() {
+		return studentsInThisClass;
 	}
 
-	public void setStudentsInThisClassroom(Student studentsInThisClassroom) {
-		this.studentsInThisClassroom = studentsInThisClassroom;
-	}
+	
 	
 	
 	

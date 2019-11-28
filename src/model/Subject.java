@@ -56,4 +56,14 @@ public abstract class Subject {
 		double av = g/counter;
 		return av;
 	}
+	
+	public void eraseGrade(double grad) {
+		boolean done = false;
+		for(int i = 0; i<grades.size() || !done;i++) {
+			if(grades.get(i)==grad) {
+				grades.remove(i);
+				done = true;
+			}
+		}
+	}
 }

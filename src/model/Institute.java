@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import exception.CannotAssignChairpersonException;
 import exception.NotFoundException;
 
 public class Institute implements SubjectInterface{
@@ -17,12 +18,18 @@ public class Institute implements SubjectInterface{
 	
 	//relaciones
 	private StudentChairPerson chaipersonsInThisInstitute;
+	//relaciones
+	private GroupDirector groupDirectorsInThisInstitute;
+	
+	//relations
+	private ArrayList<ClassRoom> classrooms;
 	
 	//metodo constructor 
 	public Institute(String name) {
 		super();
 		this.name = name;
 		studentsInThisInstitute = new ArrayList<Student>();
+		classrooms = new ArrayList<ClassRoom>();
 	}
 	
 	//metodos getters y setters
@@ -70,6 +77,13 @@ public class Institute implements SubjectInterface{
 			teachersInThisInstitute = t;
 		else
 			teachersInThisInstitute.add(((Object)t));
+	}
+	
+	public void addGroupDirector(GroupDirector t) {
+		if(groupDirectorsInThisInstitute==null)
+			groupDirectorsInThisInstitute = t;
+		else
+			groupDirectorsInThisInstitute.add(((Object)t));
 	}
 	
 	public ArrayList<Student> sortStudentsByIDB(){//bubble sort
@@ -310,14 +324,49 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		return chaipersonsInThisInstitute;
 	}
 	
-	public void addChairPerson(StudentChairPerson cp) {
-		StudentChairPerson aux = chaipersonsInThisInstitute;
-		if(aux == null)
-			chaipersonsInThisInstitute = cp;
-		else {
-			while(aux.getNextChairPerson()!=null)
-				aux = aux.getNextChairPerson();
+	public void addChairPerson(StudentChairPerson cp) throws CannotAssignChairpersonException {
+		try{if(cp.semesterAverage()<3) {
+			StudentChairPerson aux = chaipersonsInThisInstitute;
+			if(aux == null)
+				chaipersonsInThisInstitute = cp;
+			else {
+				while(aux.getNextChairPerson()!=null)
+					aux = aux.getNextChairPerson();
+			}
+			aux.setNextChairPerson(cp);
 		}
-		aux.setNextChairPerson(cp);
+		else
+			throw new CannotAssignChairpersonException();
+	}catch(CannotAssignChairpersonException c) {
+		System.out.println(c.getMessage());
+	}}
+
+	public ArrayList<ClassRoom> getClassrooms() {
+		return classrooms;
+	}
+	
+	public void eraseStudent(int c) throws NotFoundException {
+		boolean x = false;
+		try{for(int i = 0;i<studentsInThisInstitute.size() || !x;i++) {
+			if(studentsInThisInstitute.get(i).getId()==c) {
+				studentsInThisInstitute.remove(i);
+				x = true;
+			}
+		}
+			if(x==false) {
+				throw new NotFoundException();
+			}
+		}
+		catch(NotFoundException n) {
+			System.out.println(n.getMessage());
+		}
+	}
+	
+	public void addStudent(Student s) {
+		studentsInThisInstitute.add(s);
+	}
+	
+	public void eraseGrade(int id, int subject, double grade) {
+		SubjectInterface.searchSubject(searchStudentById(id).getStudentSubjects(), subject).eraseGrade(grade);
 	}
 }
