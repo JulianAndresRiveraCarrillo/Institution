@@ -1,4 +1,5 @@
 package model;
+import java.io.EOFException;
 /**
  * Final Project of Algorithms and Programming.<br>
  * Julian Rivera, Ingenieria de Sistemas.<br>
@@ -6,9 +7,11 @@ package model;
  * A program for the general administrative part of an educational institution.<br>
  */
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -445,5 +448,15 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream(f2));
 		oos2.writeObject(teachersInThisInstitute);
 		oos2.close();
+	}
+	
+	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(STUDENTS_DATA_PATH));
+		studentsInThisInstitute = (ArrayList<Student>)ois.readObject();
+		ois.close();
+		
+		ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream(TEACHERS_DATA_PATH));
+		teachersInThisInstitute = (Teacher) ois2.readObject();
+		ois2.close();
 	}
 }
