@@ -258,7 +258,7 @@ public class Institute implements SubjectInterface, Persistence{
 	 * This method sorts the student arraylist with insertion sort method
 	 * @return arraylist of students sorted
 	 */
-	public ArrayList<Student> sortClubByLastNameI(){//by insertion
+	public ArrayList<Student> sortStudentByLastNameI(){//by insertion
 		
 		for(int i = 1;i<studentsInThisInstitute.size();i++) {
 			for(int j = i;j>0 && studentsInThisInstitute.get(j-1).getLastName().compareTo(studentsInThisInstitute.get(j).getLastName())<0;j--) {
@@ -274,7 +274,7 @@ public class Institute implements SubjectInterface, Persistence{
 	 * This method sorts the student arraylist with selection sort method
 	 * @return arraylist of students sorted
 	 */
-public ArrayList<Student> sortClubByLastNameS(){//using selection
+public ArrayList<Student> sortStudentByLastNameS(){//using selection
 		
 		for(int i =0;i<studentsInThisInstitute.size();i++) {
 			Student minor = studentsInThisInstitute.get(i);
