@@ -1,5 +1,6 @@
 /controller/
+/exception/
 /model/
 /test/
-/userinterface/
 /thread/
+/userinterface/

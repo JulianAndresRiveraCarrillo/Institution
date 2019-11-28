@@ -8,13 +8,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import model.Institute;
 import model.Student;
 import thread.ClockThread;
+import thread.VisibleThread;
 
 public class Estudiante implements Initializable{
-private ClockThread c;
+	private ClockThread c;
+	private VisibleThread v;
+	
+	@FXML
+	private ImageView carita;
 	
 	@FXML
 	private Label time;
@@ -56,9 +62,19 @@ private ClockThread c;
 		time.setText(c.getD());
 	}
 
+	@FXML
+	public void doVisibleThread() {
+		boolean exit = false;
+		boolean visible = true;
+		v = new VisibleThread(carita, exit, visible);
+		v.start();
+		carita.setVisible(v.getVisible());
+	}
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		doVisibleThread();
 		
 	}
 

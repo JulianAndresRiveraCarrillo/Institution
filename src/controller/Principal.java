@@ -11,10 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import thread.ClockThread;
+import thread.VisibleThread;
 
 public class Principal implements Initializable{
 	
@@ -27,11 +29,15 @@ public class Principal implements Initializable{
 	@FXML
 	private BorderPane bp;
 	
+	@FXML
+	private ImageView carita;
+	
 	private Scene scene;
 	
 	private Login l;
 	
 	private ClockThread c;
+	private VisibleThread v;
 	@FXML
 	private Label time;
 	
@@ -104,10 +110,19 @@ public class Principal implements Initializable{
 		c.start();
 		time.setText(c.getD());
 	}
-
+	
+	@FXML
+	public void doVisibleThread() {
+		boolean exit = false;
+		boolean visible = true;
+		v = new VisibleThread(carita, exit, visible);
+		v.start();
+		carita.setVisible(v.getVisible());
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		time = new Label();
+		doVisibleThread();
 		
 		
 	}

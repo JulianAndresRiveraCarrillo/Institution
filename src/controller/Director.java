@@ -21,13 +21,17 @@ import model.GroupDirector;
 import model.Institute;
 import model.Student;
 import thread.ClockThread;
+import thread.VisibleThread;
 
 public class Director implements Initializable{
 	
 	int op = 0;
 	
 	private ClockThread c;
+	private VisibleThread v; 
 	
+	@FXML
+	private ImageView carita;
 	@FXML
 	private Label time;
 	
@@ -71,8 +75,7 @@ public class Director implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		doVisibleThread();
 	}
 	
 	@FXML
@@ -142,6 +145,15 @@ public class Director implements Initializable{
 	public void doThread() {
 		c.start();
 		time.setText(c.getD());
+	}
+	
+	@FXML
+	public void doVisibleThread() {
+		boolean exit = false;
+		boolean visible = true;
+		v = new VisibleThread(carita, exit, visible);
+		v.start();
+		carita.setVisible(v.getVisible());
 	}
 	
 	private void replaceSceneContent(Stage st) {

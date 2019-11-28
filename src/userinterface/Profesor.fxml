@@ -4,7 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -41,6 +44,15 @@
                </font>
             </TextField>
             <ListView prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="87.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="carita" fitHeight="82.0" fitWidth="127.0" layoutX="-1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/220px-Smiley.svg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </VBox>
    </left>

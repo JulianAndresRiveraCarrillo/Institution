@@ -11,11 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Institute;
 import model.Student;
 import thread.ClockThread;
+import thread.VisibleThread;
 
 public class Login implements Initializable{
 	private ClockThread c;
@@ -23,12 +25,16 @@ public class Login implements Initializable{
 	@FXML
 	private Label time;
 
+	@FXML
+	private ImageView carita;
+	
+	
 	private Scene scene;
 	
 	private char type;
 	
 	private Institute inst;
-	
+	private VisibleThread v;
 	@FXML
 	private TextField tf;
 	
@@ -77,6 +83,14 @@ public class Login implements Initializable{
 		time.setText(c.getD());
 	}
 	
+	@FXML
+	public void doVisibleThread() {
+		boolean exit = false;
+		boolean visible = true;
+		v = new VisibleThread(carita, exit, visible);
+		v.start();
+		carita.setVisible(v.getVisible());
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

@@ -14,12 +14,12 @@
    <top>
       <VBox alignment="CENTER" prefHeight="60.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Tienes cosas que hacer?" fx:id="label1">
+            <Label fx:id="label1" text="Tienes cosas que hacer?">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="36.0" />
                </font>
             </Label>
-            <Label text="Escoge la opcion necesaria" fx:id="label2">
+            <Label fx:id="label2" text="Escoge la opcion necesaria">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="24.0" />
                </font>
@@ -32,40 +32,51 @@
          <children>
             <HBox alignment="CENTER" prefHeight="90.0" prefWidth="737.0">
                <children>
-                  <ImageView fitHeight="120.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" fx:id="image1">
+                  <ImageView fx:id="image1" fitHeight="120.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/profesor.gif" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="PROFESOR" onAction="#Teacher" fx:id="profesor"/>
+                  <Button fx:id="profesor" mnemonicParsing="false" onAction="#Teacher" text="PROFESOR" />
                   <Pane prefHeight="0.0" prefWidth="130.0" />
-                  <ImageView fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" fx:id="image2">
+                  <ImageView fx:id="image2" fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/Director%20de%20grupo.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="DIRECTOR DE GRUPO" onAction="#groupDirector" fx:id="directorGrupo"/>
+                  <Button fx:id="directorGrupo" mnemonicParsing="false" onAction="#groupDirector" text="DIRECTOR DE GRUPO" />
                </children>
             </HBox>
             <Pane prefHeight="69.0" prefWidth="755.0" />
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="737.0">
                <children>
-                  <ImageView fitHeight="118.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" fx:id="image3">
+                  <ImageView fx:id="image3" fitHeight="118.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/estudiante.gif" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="ESTUDIANTE" onAction="#student" fx:id="estudiante"/>
+                  <Button fx:id="estudiante" mnemonicParsing="false" onAction="#student" text="ESTUDIANTE" />
                   <Pane prefHeight="100.0" prefWidth="130.0" />
-                  <ImageView fitHeight="111.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" fx:id="image4">
+                  <ImageView fx:id="image4" fitHeight="111.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/personero.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="PERSONERO ESTUDIANTIL" fx:id="personero"/>
+                  <Button fx:id="personero" mnemonicParsing="false" text="PERSONERO ESTUDIANTIL" />
                </children>
             </HBox>
          </children>
       </VBox>
    </center>
+   <bottom>
+      <Pane prefHeight="42.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="carita" fitHeight="69.0" fitWidth="95.0" layoutX="14.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/220px-Smiley.svg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </bottom>
 </BorderPane>
