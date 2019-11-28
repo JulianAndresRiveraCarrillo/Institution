@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import exception.CannotAssignChairpersonException;
+import exception.GradeInputMismatchException;
 import exception.NotFoundException;
 
 public class Institute implements SubjectInterface{
@@ -227,6 +228,12 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		}
 	
 	public void addGrade(int id,int s, double grade) {
+		try {
+			if(grade<0 || grade>5)
+				throw new GradeInputMismatchException();
+		}catch(GradeInputMismatchException g) {
+			System.out.println(g.getMessage());
+		}
 		if(teachersInThisInstitute!=null)
 		SubjectInterface.searchSubject(searchTeacher(id).getTeacherSubjects(),id).getGrade().add(grade);
 	}
@@ -367,6 +374,16 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	}
 	
 	public void eraseGrade(int id, int subject, double grade) {
+		try {
+			if(grade<0 || grade>5)
+				throw new GradeInputMismatchException();
+		}catch(GradeInputMismatchException g) {
+			System.out.println(g.getMessage());
+		}
 		SubjectInterface.searchSubject(searchStudentById(id).getStudentSubjects(), subject).eraseGrade(grade);
+	}
+	
+	public void modifyGrade(int student, int subject,int p, double grade) {
+		SubjectInterface.searchSubject(searchStudentById(student).getStudentSubjects(), subject).modifyGrade(p, grade);
 	}
 }

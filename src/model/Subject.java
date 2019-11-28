@@ -66,4 +66,8 @@ public abstract class Subject {
 			}
 		}
 	}
+	
+	public void modifyGrade(int p, double ng) {
+		grades.set(p, ng);
+	}
 }
