@@ -5,6 +5,11 @@ import java.io.Serializable;
 
 import exception.NotFoundException;
 
+/**
+ * @author Julian Rivera
+ * @author Alejandra Diaz
+ *Class Teacher
+ */
 public class Teacher implements SubjectInterface,CRUD,Serializable{
 	
 	/**

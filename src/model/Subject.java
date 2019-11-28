@@ -43,7 +43,7 @@ public abstract class Subject implements Serializable{
 
 	/**
 	 * Changes the following subject in the list of subjects
-	 * @param id new subject
+	 * @param nextSubject new subject
 	 */
 	public void setNextSubject(Subject nextSubject) {
 		this.nextSubject = nextSubject;

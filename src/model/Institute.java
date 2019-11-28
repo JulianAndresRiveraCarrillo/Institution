@@ -20,8 +20,10 @@ import exception.GradeInputMismatchException;
 import exception.NotFoundException;
 
 /**
+ * @author Julian Rivera
+ * @author Alejandra Diaz
  * This is the principal class.<br>
- * implements a model interface called SubjecInterface.<br>
+ * implements two model interfaces called SubjecInterface and Persistence.<br>
  */
 public class Institute implements SubjectInterface, Persistence{
 	
@@ -60,26 +62,52 @@ public class Institute implements SubjectInterface, Persistence{
 	}
 	
 	//metodos getters y setters
+	/**
+	 * returns name of the institute
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Changes the name of the institute for the one in the parameters
+	 * @param name new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * returns list (arraylist) of the students in the institute
+	 * @return arraylist of students
+	 */
 	public ArrayList<Student> getStudentsInThisInstitute() {
 		return studentsInThisInstitute;
 	}
 
+	/**
+	 * returns tree of the teachers in the institute
+	 * @return tree of teachers
+	 */
 	public Teacher getTeachersInThisInstitute() {
 		return teachersInThisInstitute;
 	}
 
+	/**
+	 * Changes the root of the teachers tree
+	 * @param teachersInThisInstitute new root
+	 */
 	public void setTeachersInThisInstitute(Teacher teachersInThisInstitute) {
 		this.teachersInThisInstitute = teachersInThisInstitute;
 	}
 	
+	/**
+	 * Method to search a teacher in the tree of teachers
+	 * @throws NotFoundException
+	 * @param id identification number of the teacher that's being searched
+	 * @return teacher searched
+	 */
 	public Teacher searchTeacher(int id) {
 		Teacher t = null;
 		try{if(teachersInThisInstitute!=null) {
@@ -94,11 +122,20 @@ public class Institute implements SubjectInterface, Persistence{
 		return t;
 	}
 	
+	/**
+	 * This method adds a subject to a teacher that teaches it
+	 * @param id identification number of the teacher
+	 * @param s the subject to add
+	 */
 	public void addTeacherSubject(int id, Subject s) {
 		
 		SubjectInterface.addSubjectStart(searchTeacher(id).getTeacherSubjects(), s);
 	}
 	
+	/**
+	 * This method adds a teacher to the teachers tree
+	 * @param t teacher to add
+	 */
 	public void addTeacher(Teacher t) {
 		if(teachersInThisInstitute==null)
 			teachersInThisInstitute = t;
@@ -106,6 +143,10 @@ public class Institute implements SubjectInterface, Persistence{
 			teachersInThisInstitute.add(((Object)t));
 	}
 	
+	/**
+	 * this method adds a group director to the tree of group directors
+	 * @param t group director to add
+	 */
 	public void addGroupDirector(GroupDirector t) {
 		if(groupDirectorsInThisInstitute==null)
 			groupDirectorsInThisInstitute = t;
@@ -113,6 +154,10 @@ public class Institute implements SubjectInterface, Persistence{
 			groupDirectorsInThisInstitute.add(((Object)t));
 	}
 	
+	/**
+	 * This method sorts the student arraylist with bubble sort method
+	 * @return arraylist of students sorted
+	 */
 	public ArrayList<Student> sortStudentsByIDB(){//bubble sort
 		
 		for(int i=studentsInThisInstitute.size();i>0;i--) {
@@ -127,6 +172,10 @@ public class Institute implements SubjectInterface, Persistence{
 		return studentsInThisInstitute;
 	}
 	
+	/**
+	 * This method sorts the student arraylist with selection sort method
+	 * @return arraylist of students sorted
+	 */
 	public ArrayList<Student> sortStudentsByIdS(){//using selection
 		
 		for(int i =0;i<studentsInThisInstitute.size();i++) {
@@ -145,7 +194,11 @@ public class Institute implements SubjectInterface, Persistence{
 		return studentsInThisInstitute;
 	}
 	
-	//searches a student in a binary way
+	/**
+	 * This method searches a student in the arraylist of students in a binary way
+	 * @param id identification numberof the student searched
+	 * @return the student searched
+	 */
 	public Student searchStudentById(int id) {
 		Student b = null;
 		
@@ -171,6 +224,11 @@ public class Institute implements SubjectInterface, Persistence{
 		return b;
 	}
 	
+	/**
+	 * This method searches a chairperson in the list of chairperson
+	 * @param id identification number of the chairperson searched
+	 * @return the chairperson searched
+	 */
 	public StudentChairPerson searchChairPerson(int id) {
 		StudentChairPerson aux = chairpersonsInThisInstitute;
 		boolean found = false;
@@ -186,11 +244,21 @@ public class Institute implements SubjectInterface, Persistence{
 		return aux;
 	}
 	
+	/**
+	 * This method updates a chairperson's information
+	 * @param id identification number of the chairperson searched
+	 * @param newName new name 
+	 * @param newLastName new last name
+	 */
 	public void updateChairPerson(int id, String newName, String newLastName) {
 		searchChairPerson(id).setFirstName(newName);
 		searchChairPerson(id).setLastName(newLastName);
 	}
 	
+	/**
+	 * This method sorts the student arraylist with insertion sort method
+	 * @return arraylist of students sorted
+	 */
 	public ArrayList<Student> sortClubByLastNameI(){//by insertion
 		
 		for(int i = 1;i<studentsInThisInstitute.size();i++) {
@@ -203,6 +271,10 @@ public class Institute implements SubjectInterface, Persistence{
 	return studentsInThisInstitute;
 	}
 	
+	/**
+	 * This method sorts the student arraylist with selection sort method
+	 * @return arraylist of students sorted
+	 */
 public ArrayList<Student> sortClubByLastNameS(){//using selection
 		
 		for(int i =0;i<studentsInThisInstitute.size();i++) {
@@ -221,6 +293,10 @@ public ArrayList<Student> sortClubByLastNameS(){//using selection
 		return studentsInThisInstitute;
 	}
 	
+/**
+ * This method sorts the student arraylist with insertion sort method
+ * @return arraylist of students sorted
+ */
 public ArrayList<Student> sortStudentsByFirstNameI(){//by insertion
 		
 		for(int i = 1;i<studentsInThisInstitute.size();i++) {
@@ -233,6 +309,10 @@ public ArrayList<Student> sortStudentsByFirstNameI(){//by insertion
 	return studentsInThisInstitute;
 	}
 
+/**
+ * This method sorts the student arraylist with bubble sort method
+ * @return arraylist of students sorted
+ */
 public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	
 	for(int i=studentsInThisInstitute.size();i>0;i--) {
@@ -247,7 +327,11 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	return studentsInThisInstitute;
 }
 	
-	//searches a student in a binary way
+/**
+ * This method searches a student in the arraylist of students in a binary way
+ * @param n first name the student searched
+ * @return the student searched
+ */
 		public Student searchStudentByFirstName(String n) {
 			Student b = null;
 			
@@ -273,6 +357,13 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 			return b;
 		}
 	
+		/**
+		 * This method adds a grade to a subject coursed by a student
+		 * @throws GradeInputMismatchException
+		 * @param id identification number of the student
+		 * @param s identification number of the subject
+		 * @param grade grade to be added
+		 */
 	public void addGrade(int id,int s, double grade) {
 		try {
 			if(grade<0 || grade>5)
@@ -281,9 +372,14 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 			System.out.println(g.getMessage());
 		}
 		if(teachersInThisInstitute!=null)
-		SubjectInterface.searchSubject(searchTeacher(id).getTeacherSubjects(),id).getGrade().add(grade);
+		SubjectInterface.searchSubject(searchStudentById(id).getStudentSubjects(),s).getGrade().add(grade);
 	}
 	
+	/**
+	 * This is an auxiliary method to eraseTeacher
+	 * @param toChange teacher that's going to be changed
+	 * @return change teacher of the teacher that's going to be changed
+	 */
 	public Teacher getTeacherChange(Teacher toChange) {
 		Teacher changeFather = toChange;
 		Teacher change = toChange;
@@ -300,6 +396,10 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		return change;
 	}
 	
+	/**
+	 * This method erases a teacher from the teachers tree
+	 * @param id identification number of the teacher that's going to be erased
+	 */
 	public void eraseTeacher(int id) {
 		if(teachersInThisInstitute!=null) {
 			if(searchTeacher(id)!=null) {
@@ -365,18 +465,38 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		}
 	}
 
+	/**
+	 * This method calculates the average grade of a subject coursed by a student.
+	 * @param student identification number of the student
+	 * @param subject identification number of the subject
+	 * @return average grade of the subject
+	 */
 	public double getAverageSubject(int student, int subject) {
 		return SubjectInterface.searchSubject(searchStudentById(student).getStudentSubjects(),subject).average();
 	}
 
+	/**
+	 * This method calculates the average grade of a the semester coursed by a student.
+	 * @param student identification number of the student
+	 * @return average grade of the semester of the student
+	 */
 	public double getAverageSemester(int student) {
 		return searchStudentById(student).semesterAverage();
 	}
 
+	/**
+	 * This method returns the list of chairpersons
+	 * @return list of chairpersons
+	 */
 	public StudentChairPerson getChaipersonsInThisInstitute() {
 		return chairpersonsInThisInstitute;
 	}
 	
+	/**
+	 * This method adds a chairperson to the list of chairpersons
+	 * @param cp chairperson that's that going to be added
+	 * @throws CannotAssignChairpersonException
+	 */
 	public void addChairPerson(StudentChairPerson cp) throws CannotAssignChairpersonException {
 		try{if(cp.semesterAverage()<3) {
 			StudentChairPerson aux = chairpersonsInThisInstitute;
@@ -394,10 +514,19 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		System.out.println(c.getMessage());
 	}}
 
+	/**
+	 * Method that returns the arraylist of classrooms
+	 * @return classrooms
+	 */
 	public ArrayList<ClassRoom> getClassrooms() {
 		return classrooms;
 	}
 	
+	/**
+	 * This method erases a student from the arraylist of students
+	 * @param c identification number of the student that's going to be erased
+	 * @throws NotFoundException
+	 */
 	public void eraseStudent(int c) throws NotFoundException {
 		boolean x = false;
 		try{for(int i = 0;i<studentsInThisInstitute.size() || !x;i++) {
@@ -415,10 +544,20 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		}
 	}
 	
+	/**
+	 * This method adds a student to the arraylist of students
+	 * @param s student that's going to be added
+	 */
 	public void addStudent(Student s) {
 		studentsInThisInstitute.add(s);
 	}
 	
+	/**
+	 * This method erases a grade of a subject coursed by a student.
+	 * @param id identification number of the student
+	 * @param subject identification number of the subject
+	 * @param grade grade that's going to be erased
+	 */
 	public void eraseGrade(int id, int subject, double grade) {
 		try {
 			if(grade<0 || grade>5)
@@ -429,12 +568,19 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		SubjectInterface.searchSubject(searchStudentById(id).getStudentSubjects(), subject).eraseGrade(grade);
 	}
 	
+	/**
+	 * This method modifies a grade of a subject coursed by a student
+	 * @param student identification number of the student
+	 * @param subject identification number of the subject
+	 * @param p position of the grade
+	 * @param grade new grade
+	 */
 	public void modifyGrade(int student, int subject,int p, double grade) {
 		SubjectInterface.searchSubject(searchStudentById(student).getStudentSubjects(), subject).modifyGrade(p, grade);
 	}
 
 	/**
-	 * 
+	 * This method desearializes the elements of the institute
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
@@ -451,6 +597,13 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		oos2.close();
 	}
 	
+	/**
+	 * This method serializes the elements in the institute
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws EOFException
+	 */
 	@Override
 	public void writeObject() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(STUDENTS_DATA_PATH));
