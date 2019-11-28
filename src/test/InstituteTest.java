@@ -14,26 +14,24 @@ class InstituteTest {
 	
 	void setupScenary1() {
 		inst = new Institute("");
-		Teacher t2 = new Teacher("Alejandra", "Diaz", 0001, null, null);
-		Teacher t = new Teacher("Julian", "Rivera", 0002, null, t2);
-		inst.addTeacher(t2);
-		inst.addTeacher(t);
+		Teacher t2 = new Teacher("Julian", "Rivera", 0002, null, null);
+		Teacher t = new Teacher("Alejandra", "Diaz", 0001, null, t2);
+		inst.setTeachersInThisInstitute(t);
 	}
 	
 	void setupScenary2() {
 		inst = new Institute("");
+		
+		Teacher t = new Teacher("Julien", "Rivera", 0002, null, null);
 		Teacher t2 = new Teacher("Alejandra", "Diaz", 0001, null, null);
-		Teacher t = new Teacher("Julian", "Rivera", 2911, null, t2);
-		inst.searchTeacher(0001);
-		inst.searchTeacher(0002);
-		inst.addTeacher(t2);
-		inst.addTeacher(t);
+		inst.setTeachersInThisInstitute(t2);
+		inst.getTeachersInThisInstitute().setRight(t);
 	}
 	
 	void setupScenary3() {
 		inst = new Institute("");
 		GroupDirector gp = new GroupDirector("Andres", "Diaz", 0120, null, null, 8);
-		GroupDirector gp2 = new GroupDirector("Juan", "Arango", 0130, gp, null, 9);
+		GroupDirector gp2 = new GroupDirector("Juan", "Arango", 0130, null, null, 9);
 		inst.addGroupDirector(gp);
 		inst.addGroupDirector(gp2);
 	}
@@ -42,44 +40,32 @@ class InstituteTest {
 		inst = new Institute("");
 		Student s = new Student("Mafalda", "Gondra", 0123, 10, 3, "3009564851", "Avenida Roosevelt");
 		inst.addStudent(s);
-		inst.searchStudentByFirstName("Mafalda");
 	}
+	
 	@Test
 	void addTeacherTest() {
 		setupScenary1();
-		Teacher t2 = new Teacher("Alejandra", "Diaz", 0001, null, null);
-		Teacher t = new Teacher("Julian", "Rivera", 0002, null, t2);
-		inst.addTeacher(t2);
-		inst.addTeacher(t);
-		assertTrue(inst.searchTeacher(0001).getFirstName().equalsIgnoreCase(t2.getFirstName()));
-		assertTrue(inst.searchTeacher(0002).getFirstName().equalsIgnoreCase(t.getFirstName()));
+		assertTrue(inst.searchTeacher(0001).getFirstName().equalsIgnoreCase("Alejandra"));
+		assertTrue(inst.searchTeacher(0002).getFirstName().equalsIgnoreCase("Julian"));
 	}
 	
 	@Test
 	void searchTeacherTest() {
 		setupScenary2();
-		Teacher t2 = new Teacher("Alejandra", "Diaz", 0101, null, null);
-		Teacher t = new Teacher("Julian", "Rivera", 2911, null, t2);
-		inst.addTeacher(t2);
-		inst.addTeacher(t);
-		assertTrue(inst.searchTeacher(0101).getFirstName().equalsIgnoreCase(t2.getLastName()));
-		assertTrue(inst.searchTeacher(2911).getFirstName().equalsIgnoreCase(t.getLastName()));
+		assertTrue(inst.searchTeacher(0001).getFirstName().equals("Alejandra"));
+		assertTrue(inst.searchTeacher(0002).getLastName().equals("Rivera"));
 	}
 	
 	@Test
 	void addGroupDirectorTest() {
 		setupScenary3();
-		GroupDirector gp = new GroupDirector("Andres", "Diaz", 0120, null, null, 8);
-		GroupDirector gp2 = new GroupDirector("Juan", "Arango", 0130, gp, null, 9);
-		inst.addGroupDirector(gp);
-		inst.addGroupDirector(gp2);
 		assertTrue(inst.searchTeacher(0120).getLeft() == null);
-		assertTrue(inst.searchTeacher(0130).getId() == gp2.getId());
+		assertTrue(inst.searchTeacher(0130).getFirstName().equals("Juan"));
 	}
 	
 	@Test
 	void addStudentTest() {
-		setupScenary4();
+		Institute inst = new Institute("");
 		Student s = new Student("Mafalda", "Gondra", 0123, 10, 3, "3009564851", "Avenida Roosevelt");
 		inst.addStudent(s);
 		assert(inst.searchStudentByFirstName("Mafalda").getFirstName().equalsIgnoreCase(s.getFirstName()));
