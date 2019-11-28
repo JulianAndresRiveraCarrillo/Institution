@@ -2,8 +2,8 @@ package model;
 
 public class PlasticArts extends Subject {
 
-	public PlasticArts(Subject nextSubject) {
-		super(nextSubject);
+	public PlasticArts(String name, int id, Subject nextSubject) {
+		super(name, id, nextSubject);
 	}
 
 }
