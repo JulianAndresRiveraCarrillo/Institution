@@ -1,10 +1,16 @@
 package model;
 
 
+import java.io.Serializable;
+
 import exception.NotFoundException;
 
-public class Teacher implements SubjectInterface,CRUD{
+public class Teacher implements SubjectInterface,CRUD,Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//atributos
 	private String firstName;
 	private String lastName; 
