@@ -8,9 +8,10 @@ import javafx.scene.control.Label;
 public class ClockThread extends Thread{
 	
 	private String d;
-
-	public ClockThread() {
-		// TODO Auto-generated constructor stub
+	private boolean x;
+	
+	public ClockThread(boolean x) {
+		this.x = x;
 	}
 	
 	public void changeD(String d) {
@@ -24,6 +25,7 @@ public class ClockThread extends Thread{
 	@Override
 	public void run() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		while(!x) {
 		   LocalDateTime now = LocalDateTime.now();
 		   changeD(dtf.format(now));
 		   try {
@@ -31,6 +33,7 @@ public class ClockThread extends Thread{
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 	}
 }
