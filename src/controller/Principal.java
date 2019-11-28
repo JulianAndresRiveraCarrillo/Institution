@@ -44,6 +44,47 @@ public class Principal implements Initializable{
 			l = f.getController();
 			Scene sc = new Scene(root);
 			l.setScene(sc);
+			l.getType('D');
+			s.setScene(sc);
+			s.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void profesor(MouseEvent event) {
+		((Stage)scene.getWindow()).close();
+		
+		FXMLLoader f = new FXMLLoader(getClass().getResource("Login.fxml"));
+		try {
+			Parent root = f.load();
+			Stage s = new Stage();
+			l = f.getController();
+			Scene sc = new Scene(root);
+			l.setScene(sc);
+			l.getType('P');
+			s.setScene(sc);
+			s.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void student(MouseEvent event) {
+		((Stage)scene.getWindow()).close();
+		
+		FXMLLoader f = new FXMLLoader(getClass().getResource("Login.fxml"));
+		try {
+			Parent root = f.load();
+			Stage s = new Stage();
+			l = f.getController();
+			Scene sc = new Scene(root);
+			l.setScene(sc);
+			l.getType('S');
 			s.setScene(sc);
 			s.show();
 		} catch (IOException e) {

@@ -13,6 +13,10 @@ public class Login implements Initializable{
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
+	
+	public char getType(char type) {
+		return type;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
