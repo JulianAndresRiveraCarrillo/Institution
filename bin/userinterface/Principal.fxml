@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87cefa;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Principal">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87cefa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Principal">
    <center>
       <HBox alignment="CENTER" prefHeight="127.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +18,7 @@
                   <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="DIRECTOR">
+            <Button mnemonicParsing="false" onAction="#director" text="DIRECTOR">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
@@ -27,7 +27,7 @@
                   <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="PROFESOR">
+            <Button mnemonicParsing="false" onAction="#profesor" text="PROFESOR">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
@@ -36,7 +36,7 @@
                   <Image url="@../../resources/kisspng-educational-institution-national-secondary-school-alumni-5ac081b9161655.1876102515225655610905.jpg" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="ESTUDIANTE">
+            <Button mnemonicParsing="false" onAction="#student" text="ESTUDIANTE">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
