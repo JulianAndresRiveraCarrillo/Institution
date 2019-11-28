@@ -104,7 +104,6 @@ public class Institute implements SubjectInterface, Persistence{
 	
 	/**
 	 * Method to search a teacher in the tree of teachers
-	 * @throws NotFoundException
 	 * @param id identification number of the teacher that's being searched
 	 * @return teacher searched
 	 */
@@ -359,12 +358,12 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	
 		/**
 		 * This method adds a grade to a subject coursed by a student
-		 * @throws GradeInputMismatchException
+		 * @throws GradeInputMismatchException if the grade isn't between 0 and 5
 		 * @param id identification number of the student
 		 * @param s identification number of the subject
 		 * @param grade grade to be added
 		 */
-	public void addGrade(int id,int s, double grade) {
+	public void addGrade(int id,int s, double grade) throws GradeInputMismatchException{
 		try {
 			if(grade<0 || grade>5)
 				throw new GradeInputMismatchException();
@@ -495,7 +494,7 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	/**
 	 * This method adds a chairperson to the list of chairpersons
 	 * @param cp chairperson that's that going to be added
-	 * @throws CannotAssignChairpersonException
+	 * @throws CannotAssignChairpersonException if the chairperson's average grade is under 3
 	 */
 	public void addChairPerson(StudentChairPerson cp) throws CannotAssignChairpersonException {
 		try{if(cp.semesterAverage()<3) {
@@ -525,7 +524,7 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	/**
 	 * This method erases a student from the arraylist of students
 	 * @param c identification number of the student that's going to be erased
-	 * @throws NotFoundException
+	 * @throws NotFoundException if the student to be erased cannot be found
 	 */
 	public void eraseStudent(int c) throws NotFoundException {
 		boolean x = false;
@@ -581,8 +580,8 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 
 	/**
 	 * This method desearializes the elements of the institute
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException if the data cannot be found
+	 * @throws IOException because it could happen
 	 */
 	@Override
 	public void readObject() throws FileNotFoundException, IOException {
@@ -599,10 +598,10 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	
 	/**
 	 * This method serializes the elements in the institute
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws EOFException
+	 * @throws FileNotFoundException if the program can't found the data
+	 * @throws IOException because it could happen
+	 * @throws ClassNotFoundException because it could happen 
+	 * @throws EOFException because it could happen
 	 */
 	@Override
 	public void writeObject() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
