@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.Event;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,10 +20,16 @@ import javafx.stage.Stage;
 import model.GroupDirector;
 import model.Institute;
 import model.Student;
+import thread.ClockThread;
 
 public class Director implements Initializable{
 	
 	int op = 0;
+	
+	private ClockThread c;
+	
+	@FXML
+	private Label time;
 	
 	@FXML
 	Label label1;
@@ -131,6 +136,12 @@ public class Director implements Initializable{
 		Stage stage = new Stage();
 		replaceSceneContent(stage);
 		
+	}
+	
+	@FXML
+	public void doThread() {
+		c.start();
+		time.setText(c.getD());
 	}
 	
 	private void replaceSceneContent(Stage st) {

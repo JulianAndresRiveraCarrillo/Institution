@@ -18,6 +18,10 @@ import model.Student;
 import thread.ClockThread;
 
 public class Login implements Initializable{
+	private ClockThread c;
+	
+	@FXML
+	private Label time;
 
 	private Scene scene;
 	
@@ -66,6 +70,13 @@ public class Login implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void doThread() {
+		c.start();
+		time.setText(c.getD());
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
