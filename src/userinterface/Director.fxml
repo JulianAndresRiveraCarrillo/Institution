@@ -37,14 +37,14 @@
                         <Image url="@../../resources/profesor.gif" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="PROFESOR" fx:id="profesor"/>
+                  <Button mnemonicParsing="false" text="PROFESOR" onAction="#Teacher" fx:id="profesor"/>
                   <Pane prefHeight="0.0" prefWidth="130.0" />
                   <ImageView fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" fx:id="image2">
                      <image>
                         <Image url="@../../resources/Director%20de%20grupo.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="DIRECTOR DE GRUPO" fx:id="directorGrupo"/>
+                  <Button mnemonicParsing="false" text="DIRECTOR DE GRUPO" onAction="#groupDirector" fx:id="directorGrupo"/>
                </children>
             </HBox>
             <Pane prefHeight="69.0" prefWidth="755.0" />
@@ -55,7 +55,7 @@
                         <Image url="@../../resources/estudiante.gif" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" text="ESTUDIANTE" fx:id="estudiante"/>
+                  <Button mnemonicParsing="false" text="ESTUDIANTE" onAction="#student" fx:id="estudiante"/>
                   <Pane prefHeight="100.0" prefWidth="130.0" />
                   <ImageView fitHeight="111.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" fx:id="image4">
                      <image>
