@@ -18,10 +18,6 @@ import model.Student;
 import thread.ClockThread;
 
 public class Login implements Initializable{
-private ClockThread c;
-	
-	@FXML
-	private Label time;
 
 	private Scene scene;
 	
@@ -38,12 +34,6 @@ private ClockThread c;
 	
 	public void getType(char type) {
 		this.type=type;
-	}
-	
-	@FXML
-	public void doThread() {
-		c.start();
-		time.setText(c.getD());
 	}
 
 	@FXML
