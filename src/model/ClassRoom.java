@@ -18,7 +18,6 @@ public class ClassRoom {
 
 	//metodo constructor
 	/**
-	 * /**
 	 * Constructor that instantiates a classroom
 	 * @param location physical location of the classroom
 	 */
