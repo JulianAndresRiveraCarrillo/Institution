@@ -1,5 +1,10 @@
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import exception.CannotAssignChairpersonException;
@@ -18,12 +23,17 @@ public class Institute implements SubjectInterface{
 	private Teacher teachersInThisInstitute;
 	
 	//relaciones
-	private StudentChairPerson chaipersonsInThisInstitute;
+	private StudentChairPerson chairpersonsInThisInstitute;
 	//relaciones
 	private GroupDirector groupDirectorsInThisInstitute;
 	
 	//relations
 	private ArrayList<ClassRoom> classrooms;
+	
+	//constants
+	public static String STUDENTS_DATA_PATH="resources/studentsdata.txt";
+	//constants
+	public static String TEACHERS_DATA_PATH="resources/teachersdata.txt";
 	
 	//metodo constructor 
 	public Institute(String name) {
@@ -143,6 +153,26 @@ public class Institute implements SubjectInterface{
 			}
 		}
 		return b;
+	}
+	
+	public StudentChairPerson searchChairPerson(int id) {
+		StudentChairPerson aux = chairpersonsInThisInstitute;
+		boolean found = false;
+		try{while(aux!=null || !found) {
+			if(aux.getId()==id)
+				found = true;
+		}
+		if(found = false)
+			throw new NotFoundException();
+		}catch(NotFoundException n) {
+			System.out.println(n.getMessage());
+		}
+		return aux;
+	}
+	
+	public void updateChairPerson(int id, String newName, String newLastName) {
+		searchChairPerson(id).setFirstName(newName);
+		searchChairPerson(id).setLastName(newLastName);
 	}
 	
 	public ArrayList<Student> sortClubByLastNameI(){//by insertion
@@ -328,14 +358,14 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	}
 
 	public StudentChairPerson getChaipersonsInThisInstitute() {
-		return chaipersonsInThisInstitute;
+		return chairpersonsInThisInstitute;
 	}
 	
 	public void addChairPerson(StudentChairPerson cp) throws CannotAssignChairpersonException {
 		try{if(cp.semesterAverage()<3) {
-			StudentChairPerson aux = chaipersonsInThisInstitute;
+			StudentChairPerson aux = chairpersonsInThisInstitute;
 			if(aux == null)
-				chaipersonsInThisInstitute = cp;
+				chairpersonsInThisInstitute = cp;
 			else {
 				while(aux.getNextChairPerson()!=null)
 					aux = aux.getNextChairPerson();
@@ -385,5 +415,22 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	
 	public void modifyGrade(int student, int subject,int p, double grade) {
 		SubjectInterface.searchSubject(searchStudentById(student).getStudentSubjects(), subject).modifyGrade(p, grade);
+	}
+
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public void saveData() throws FileNotFoundException, IOException {
+		File f = new File(STUDENTS_DATA_PATH);
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+		oos.writeObject(studentsInThisInstitute);
+		oos.close();
+
+		File f2 = new File(TEACHERS_DATA_PATH);
+		ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream(f2));
+		oos2.writeObject(teachersInThisInstitute);
+		oos2.close();
 	}
 }
