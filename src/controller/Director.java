@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.JobAttributes;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import exception.NotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -201,6 +203,27 @@ public class Director implements Initializable{
 			break;
 		}});
 		
+		eliminar.addEventHandler(MouseEvent.MOUSE_CLICKED,(e)->{switch (op) {
+		case 1:
+			String text = JOptionPane.showInputDialog("Ingrese el id del profesor a despedir: ");
+			int id = Integer.parseInt(text);
+			inst.eraseTeacher(id);
+			break;
+
+			
+		case 3:
+			String txt = JOptionPane.showInputDialog("Ingrese el id del estudiante a expulsar");
+			int ID = Integer.parseInt(txt);
+			try {
+				inst.eraseStudent(ID);
+			} catch (NotFoundException e1) {
+				e1.printStackTrace();
+			}
+			break;
+			
+		default:
+			break;
+		}});
 		VBox vbox = new VBox();
 		vbox.getChildren().add(agregar);
 		vbox.getChildren().add(eliminar);
