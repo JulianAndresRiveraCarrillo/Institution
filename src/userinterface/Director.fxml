@@ -32,14 +32,14 @@
          <children>
             <HBox alignment="CENTER" prefHeight="90.0" prefWidth="737.0">
                <children>
-                  <ImageView fitHeight="106.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="120.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/profesor.gif" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" text="PROFESOR" />
                   <Pane prefHeight="0.0" prefWidth="130.0" />
-                  <ImageView fitHeight="103.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="122.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/Director%20de%20grupo.png" />
                      </image>
@@ -47,28 +47,17 @@
                   <Button mnemonicParsing="false" text="DIRECTOR DE GRUPO" />
                </children>
             </HBox>
-            <Pane prefHeight="50.0" prefWidth="737.0" />
-            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="737.0">
-               <children>
-                  <ImageView fitHeight="91.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/coordinador.gif" />
-                     </image>
-                  </ImageView>
-                  <Button mnemonicParsing="false" text="COORDINADOR" />
-               </children>
-            </HBox>
-            <Pane prefHeight="50.0" prefWidth="737.0" />
+            <Pane prefHeight="69.0" prefWidth="755.0" />
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="737.0">
                <children>
-                  <ImageView fitHeight="102.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="118.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/estudiante.gif" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" text="ESTUDIANTE" />
                   <Pane prefHeight="100.0" prefWidth="130.0" />
-                  <ImageView fitHeight="89.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="111.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/personero.png" />
                      </image>
