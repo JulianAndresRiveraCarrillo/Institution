@@ -1,5 +1,10 @@
 package model;
-
+/**
+ * Final Project of Algorithms and Programming.<br>
+ * Julian Rivera, Ingenieria de Sistemas.<br>
+ * Alejandra Diaz, Ingenieria Telematica.<br>
+ * A program for the general administrative part of an educational institution.<br>
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,6 +16,10 @@ import exception.CannotAssignChairpersonException;
 import exception.GradeInputMismatchException;
 import exception.NotFoundException;
 
+/**
+ * This is the principal class.<br>
+ * implements a model interface called SubjecInterface.<br>
+ */
 public class Institute implements SubjectInterface{
 	
 	//atributos
@@ -36,6 +45,10 @@ public class Institute implements SubjectInterface{
 	public static String TEACHERS_DATA_PATH="resources/teachersdata.txt";
 	
 	//metodo constructor 
+	/**
+	 * this is the constructor method of the class. Receive a single parameter.<br>
+	 * @param name. It is the institute's name.<br>
+	 */
 	public Institute(String name) {
 		super();
 		this.name = name;
