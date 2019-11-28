@@ -23,7 +23,7 @@ import exception.NotFoundException;
  * This is the principal class.<br>
  * implements a model interface called SubjecInterface.<br>
  */
-public class Institute implements SubjectInterface{
+public class Institute implements SubjectInterface, Persistence{
 	
 	//atributos
 	private String name;
@@ -438,7 +438,8 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public void saveData() throws FileNotFoundException, IOException {
+	@Override
+	public void readObject() throws FileNotFoundException, IOException {
 		File f = new File(STUDENTS_DATA_PATH);
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
 		oos.writeObject(studentsInThisInstitute);
@@ -450,7 +451,8 @@ public ArrayList<Student> sortStudentByFirstNameB(){//by bubble
 		oos2.close();
 	}
 	
-	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
+	@Override
+	public void writeObject() throws FileNotFoundException, IOException, ClassNotFoundException, EOFException{
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(STUDENTS_DATA_PATH));
 		studentsInThisInstitute = (ArrayList<Student>)ois.readObject();
 		ois.close();
