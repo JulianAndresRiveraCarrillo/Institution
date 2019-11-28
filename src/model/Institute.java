@@ -82,7 +82,7 @@ public class Institute implements SubjectInterface{
 		try{if(teachersInThisInstitute!=null) {
 			t = ((Teacher)teachersInThisInstitute.search(id));
 		}
-		else if(teachersInThisInstitute.search(id)==null) {
+		else if(teachersInThisInstitute==null ||teachersInThisInstitute.search(id)==null) {
 			throw new NotFoundException();
 		}
 		}catch(NotFoundException p) {

@@ -26,8 +26,8 @@ public class Teacher implements SubjectInterface,CRUD,Serializable{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.id = id;
-		left = null;
-		right = null;
+		this.left = left;
+		this.right = right;
 	}
 
 	//metodos getters y setters
@@ -85,16 +85,16 @@ public class Teacher implements SubjectInterface,CRUD,Serializable{
 		Teacher o = null;
 		try{if(id==this.id) 
 			o = this;
-		if(id>this.id && right==null) {
+		else if(id>this.id && right==null) {
 			throw new NotFoundException();
 		}
-		if(id<this.id && left==null) {
+		else if(id<this.id && left==null) {
 			throw new NotFoundException();
 		}
-		if(id>this.id && right!=null) {
+		else if(id>this.id && right!=null) {
 			right.search(id);
 		}
-		if(id<this.id && left!=null) {
+		else if(id<this.id && left!=null) {
 			left.search(id);
 		}
 		}catch(NotFoundException n) {
@@ -110,13 +110,13 @@ public class Teacher implements SubjectInterface,CRUD,Serializable{
 		if(t.getId()>this.id && right==null) {
 			right = t;
 		}
-		if(t.getId()<this.id && left==null) {
+		else if(t.getId()<this.id && left==null) {
 			left = t;
 		}
-		if(t.getId()>this.id && right!=null) {
+		else if(t.getId()>this.id && right!=null) {
 			right.add(o);
 		}
-		if(t.getId()<this.id && left!=null) {
+		else if(t.getId()<this.id && left!=null) {
 			left.add(o);
 		}
 	}

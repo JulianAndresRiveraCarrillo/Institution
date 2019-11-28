@@ -24,7 +24,6 @@ public class Student implements SubjectInterface,Serializable{
 	
 	//metodo constructor
 	public Student(String firstName, String lastName, int id, int age, int stratum, String phone, String address) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.id = id;
