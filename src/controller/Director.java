@@ -1,16 +1,23 @@
 package controller;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import model.*;
-public class Director {
+
+public class Director implements Initializable{
+	
+	@FXML
+	Label label1;
+	
+	@FXML
+	Label label2;
 	
 	@FXML
 	Button profesor;
@@ -23,33 +30,46 @@ public class Director {
 	
 	@FXML
 	Button personero;
-	
-	private Login log;
-	
-	private Student st;
-	
-	private Profesor p;
 
 	@FXML
-	public void openTeacher(MouseEvent event) {
-		
-		
-		FXMLLoader fxml = new FXMLLoader(getClass().getResource("Profesor.fxml"));
-		try {
-			Parent root = fxml.load();
-			Stage stage = new Stage();
-			Scene scene = new Scene(root);
-			p = fxml.getController();
-			//p.setScene(scene);
-			stage.setTitle("PROFESOR");
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	ImageView image1;
+	
+	@FXML
+	ImageView image2;
+	
+	@FXML
+	ImageView image3;
+	
+	@FXML
+	ImageView image4;
+
+	private Scene scene;
+	
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	
-	
+	void Teacher(MouseEvent evet) {
+		label1.setVisible(false);
+		label2.setVisible(false);
+		
+		image1.setVisible(false);
+		image2.setVisible(false);
+		image3.setVisible(false);
+		image4.setVisible(false);
+		
+		profesor.setVisible(false);
+		directorGrupo.setVisible(false);
+		estudiante.setVisible(false);
+		personero.setVisible(false);
+		
+		
+	}
+		
 }
